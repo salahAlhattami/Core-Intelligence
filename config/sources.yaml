@@ -1,0 +1,19 @@
+schema_version: 1
+priority:
+  - official_current_exhibitor_directory
+  - official_historical_exhibitor_directory
+  - organizer_catalogue_floorplan_app
+  - organizer_announcement
+  - exhibitor_official_website
+  - exhibitor_official_social_profile
+  - chamber_government_official_directory
+  - public_business_directory
+
+rules:
+  primary_required_for_confirmation: true
+  secondary_for_discovery_only: true
+  cross_verify_secondary_contact_data: true
+  preserve_source_url: true
+  preserve_access_date: true
+  manual_public_social_lookup_only: true
+  bulk_scraping_restricted_platforms: false
