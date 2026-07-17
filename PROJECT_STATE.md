@@ -1,13 +1,14 @@
 # Project State
 
 Last updated: 2026-07-17
-Status: Source-coverage expansion in review
+Status: Comprehensive public-source coverage approved and operational
 
 ## Current objective
 Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibitors plus the last two or three completed editions, with comprehensive collection across all relevant public sources.
 
 ## Priority queue
 - [x] P0 — Establish the CIP operating model, canonical schemas, source policy, and quality rules.
+- [x] P0 — Expand collection policy to official, third-party, unofficial, and unverified public sources with clear source labels.
 - [ ] P0 — Validate the initial Riyadh exhibition calendar and classify exhibition vs conference-only events.
 - [ ] P0 — Register current and historical source URLs across official and third-party public sources.
 - [ ] P0 — Start historical candidate collection immediately where 2026 directories are unavailable.
@@ -23,6 +24,12 @@ Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibi
 LEAP, Cityscape Global, BAPEX, HR-focused exhibitions, and every other qualifying Riyadh exhibition through 31 December 2026. Names, dates, and eligibility must be verified before being treated as canonical.
 
 ## Daily log
+### 2026-07-17 — Source expansion approved
+- Completed final review of PR #2 across six files.
+- Approved comprehensive collection from official, third-party, unofficial, and unverified public sources.
+- Confirmed that discovery-only data remains usable when clearly labelled by source relationship, confidence, and verification status.
+- Approved the expanded schemas and source configuration for operational use.
+
 ### 2026-07-17 — Comprehensive source expansion
 - Expanded collection from official sources to all relevant publicly accessible sources.
 - Explicitly added Eye of Riyadh, Saudi/international company directories, B2B/industry directories, Google Business/Maps, LinkedIn, social platforms, public news, and other public pages.
