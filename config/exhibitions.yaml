@@ -1,0 +1,32 @@
+schema_version: 1
+scope:
+  city: Riyadh
+  country: Saudi Arabia
+  through_date: 2026-12-31
+  include: exhibitions_with_exhibitors
+  exclude:
+    - conference_only
+    - lecture_only
+    - webinar_only
+
+edition_history:
+  minimum_completed_editions: 2
+  target_completed_editions: 3
+  start_without_current_directory: true
+  historical_status_must_not_equal_confirmed: true
+
+initial_discovery_targets:
+  - name: LEAP
+    priority: A+
+    verification_status: pending
+  - name: Cityscape Global
+    priority: A+
+    verification_status: pending
+  - name: BAPEX
+    priority: pending
+    verification_status: pending
+  - name: HR exhibitions in Riyadh
+    priority: pending
+    verification_status: pending
+
+discovery_rule: "Expand beyond the initial list to every qualifying Riyadh exhibition through 2026."
