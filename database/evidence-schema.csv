@@ -1,1 +1,1 @@
-evidence_id,entity_type,entity_id,field_name,claimed_value,source_type,source_name,source_url,edition_year,published_at,accessed_at,is_primary,verification_status,notes
+evidence_id,entity_type,entity_id,field_name,claimed_value,source_type,source_relationship,source_name,source_url,account_or_page_status,edition_year,published_at,accessed_at,is_primary,verification_status,confidence,notes
