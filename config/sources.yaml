@@ -1,19 +1,55 @@
-schema_version: 1
-priority:
+schema_version: 2
+collection_mode: comprehensive_public_sources
+
+source_universe:
   - official_current_exhibitor_directory
   - official_historical_exhibitor_directory
   - organizer_catalogue_floorplan_app
   - organizer_announcement
-  - exhibitor_official_website
-  - exhibitor_official_social_profile
-  - chamber_government_official_directory
+  - company_website
+  - distributor_partner_website
+  - government_registry
+  - chamber_trade_body
+  - eye_of_riyadh
+  - saudi_company_directory
+  - international_company_directory
   - public_business_directory
+  - b2b_industry_directory
+  - google_search
+  - google_business_maps
+  - linkedin
+  - instagram
+  - facebook
+  - x
+  - youtube
+  - public_news_press_release
+  - public_event_photo_caption
+  - other_public_source
+
+source_relationships:
+  - official
+  - organizer_or_event
+  - government_or_chamber
+  - third_party_directory
+  - unofficial_social_or_public_page
+  - search_discovery
+  - unknown
 
 rules:
-  primary_required_for_confirmation: true
-  secondary_for_discovery_only: true
-  cross_verify_secondary_contact_data: true
+  official_or_verified_account_required: false
+  verification_badge_required: false
+  collect_unofficial_public_pages: true
+  collect_unverified_public_pages: true
+  retain_discovery_only_data: true
+  cross_verify_when_possible: true
+  do_not_discard_if_not_cross_verified: true
   preserve_source_url: true
+  preserve_source_name: true
+  preserve_source_type: true
+  preserve_source_relationship: true
   preserve_access_date: true
-  manual_public_social_lookup_only: true
-  bulk_scraping_restricted_platforms: false
+  preserve_confidence: true
+  manual_public_social_lookup_allowed: true
+  prohibited_bulk_scraping_of_restricted_platforms: true
+  public_business_information_only: true
+  guessed_or_generated_contacts_forbidden: true
