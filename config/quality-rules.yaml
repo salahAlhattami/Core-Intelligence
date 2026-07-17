@@ -1,0 +1,32 @@
+schema_version: 1
+required_for_each_participation:
+  - exhibition_id
+  - edition_year
+  - company_id
+  - participation_status
+  - participation_source_url
+  - source_checked_at
+
+required_for_verified_contact:
+  - contact_value
+  - contact_type
+  - source_url
+  - verified_at
+
+forbidden:
+  - guessed_email
+  - generated_email_pattern
+  - private_personal_contact
+  - historical_as_current_confirmation
+  - unsupported_source_claim
+
+deduplication:
+  primary_keys:
+    - official_domain
+    - normalized_legal_name
+  manual_review_on_conflict: true
+
+confidence:
+  high: "Official primary source or two consistent authoritative sources."
+  medium: "One credible public source requiring further confirmation."
+  low: "Discovery-only lead; must not be treated as verified."
