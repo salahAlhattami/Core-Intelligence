@@ -9,7 +9,7 @@ Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibi
 ## Priority queue
 - [x] P0 — Establish the CIP operating model, canonical schemas, source policy, and quality rules.
 - [x] P0 — Expand collection policy to official, third-party, unofficial, and unverified public sources with clear source labels.
-- [ ] P0 — Validate the initial Riyadh exhibition calendar and classify exhibition vs conference-only events.
+- [x] P0 — Validate the initial Riyadh exhibition calendar and classify exhibition vs conference-only events.
 - [ ] P0 — Register current and historical source URLs across official and third-party public sources.
 - [ ] P0 — Start historical candidate collection immediately where 2026 directories are unavailable.
 - [ ] P1 — Import/normalize the existing Riyadh exhibitions workbook into canonical CSV datasets.
@@ -24,6 +24,14 @@ Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibi
 LEAP, Cityscape Global, BAPEX, HR-focused exhibitions, and every other qualifying Riyadh exhibition through 31 December 2026. Names, dates, and eligibility must be verified before being treated as canonical.
 
 ## Daily log
+### 2026-07-17 — Riyadh exhibition registry rerun
+- Reran the unavailable Riyadh exhibition registry/source-map task in the managed Codex Cloud checkout.
+- Created 16 qualifying Riyadh exhibition records through 31 December 2026.
+- Created 70 current/historical source-map records and 86 field-level evidence records.
+- Current 2026 exhibitor directories/lists were located for 4 exhibitions; other targets retain explicit missing/current-directory gaps and baseline historical `not_found` search records.
+- Preserved discovery-only handling for low-confidence public sources and did not treat historical participation as current confirmation.
+- [!] Salah to decide whether consumer/shopping/entertainment events with exhibitor floors, such as DUNES Expo and shopping/fashion pop-up markets, should enter the B2B Core Media exhibition pipeline.
+
 ### 2026-07-17 — Source expansion approved
 - Completed final review of PR #2 across six files.
 - Approved comprehensive collection from official, third-party, unofficial, and unverified public sources.
