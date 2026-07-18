@@ -1,6 +1,6 @@
 # Project State
 
-Last updated: 2026-07-17
+Last updated: 2026-07-18
 Status: Comprehensive public-source coverage approved and operational
 
 ## Current objective
@@ -9,7 +9,7 @@ Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibi
 ## Priority queue
 - [x] P0 — Establish the CIP operating model, canonical schemas, source policy, and quality rules.
 - [x] P0 — Expand collection policy to official, third-party, unofficial, and unverified public sources with clear source labels.
-- [x] P0 — Validate the initial Riyadh exhibition calendar and classify exhibition vs conference-only events.
+- [ ] P0 — Validate the initial Riyadh exhibition calendar and classify exhibition vs conference-only events. _(partial/in progress; 18 Jul–31 Dec 2026 scope corrected, but category coverage gaps remain)_
 - [ ] P0 — Register current and historical source URLs across official and third-party public sources.
 - [ ] P0 — Start historical candidate collection immediately where 2026 directories are unavailable.
 - [ ] P1 — Import/normalize the existing Riyadh exhibitions workbook into canonical CSV datasets.
@@ -24,13 +24,14 @@ Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibi
 LEAP, Cityscape Global, BAPEX, HR-focused exhibitions, and every other qualifying Riyadh exhibition through 31 December 2026. Names, dates, and eligibility must be verified before being treated as canonical.
 
 ## Daily log
-### 2026-07-17 — Riyadh exhibition registry rerun
-- Reran the unavailable Riyadh exhibition registry/source-map task in the managed Codex Cloud checkout.
-- Created 16 qualifying Riyadh exhibition records through 31 December 2026.
-- Created 70 current/historical source-map records and 86 field-level evidence records.
-- Current 2026 exhibitor directories/lists were located for 4 exhibitions; other targets retain explicit missing/current-directory gaps and baseline historical `not_found` search records.
-- Preserved discovery-only handling for low-confidence public sources and did not treat historical participation as current confirmation.
-- [!] Salah to decide whether consumer/shopping/entertainment events with exhibitor floors, such as DUNES Expo and shopping/fashion pop-up markets, should enter the B2B Core Media exhibition pipeline.
+### 2026-07-18 — PR #3 registry correction pass
+- Corrected the operational upcoming scope to 18 July 2026 through 31 December 2026.
+- Reclassified seven pre-18-July events as `completed_historical` / `historical_2026_completed` so they remain available for historical extraction but are excluded from upcoming sales-pipeline totals.
+- Expanded the registry to 32 rows across upcoming B2B exhibitions, completed historical 2026 exhibitions, secondary consumer/commercial opportunities, and date-unconfirmed candidates.
+- Recorded 71 audited source-map rows and 230 field-level evidence rows with corrected source relationships, primary/third-party classification, lifecycle status, and current/historical classification.
+- Reopened the P0 calendar-validation item as partial/in progress because HR/recruitment, BAPEX/FAPEX, equestrian, back-to-school, and other category gaps require further research before comprehensive validation can be claimed complete.
+- [!] Salah to decide whether secondary consumer/commercial opportunities such as DUNES Expo, shopping/fashion pop-up markets, horse/equestrian events, and back-to-school retail fairs should enter the B2B Core Media pipeline.
+
 
 ### 2026-07-17 — Source expansion approved
 - Completed final review of PR #2 across six files.
