@@ -24,6 +24,12 @@ Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibi
 LEAP, Cityscape Global, BAPEX, HR-focused exhibitions, and every other qualifying Riyadh exhibition through 31 December 2026. Names, dates, and eligibility must be verified before being treated as canonical.
 
 ## Daily log
+### 2026-07-18 — PR #3 final duplicate-source cleanup
+- Removed duplicate Saudi Agriculture 2026 current source rows for the same exhibitors-list URL.
+- Kept one Lighting Design & Technology 2023 historical exhibitor source and corrected the erroneous source id that implied a 2026 official current source.
+- Downgraded Saudi Agriculture 2025 historical coverage to `not_found` because the reused exhibitors-list URL was not captured with explicit 2025 dating.
+- Added registry validation for duplicate source composites: `exhibition_id + edition_year + source_url + current_or_historical`.
+
 ### 2026-07-18 — PR #3 registry correction pass
 - Corrected the operational upcoming scope to 18 July 2026 through 31 December 2026.
 - Reclassified seven pre-18-July events as `completed_historical` / `historical_2026_completed` so they remain available for historical extraction but are excluded from upcoming sales-pipeline totals.

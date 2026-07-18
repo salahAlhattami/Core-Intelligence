@@ -15,11 +15,11 @@ The operational upcoming-exhibition registry now covers exhibitions occurring fr
 - Excluded non-exhibition events/categories documented: 3
 - Current 2026 exhibitor/company directories found for upcoming B2B pipeline: 4
 - Upcoming B2B current-directory gaps: 14
-- Upcoming B2B exhibitions with one historical exhibitor/list edition found: 5
-- Upcoming B2B exhibitions with two historical exhibitor/list editions found: 2
+- Upcoming B2B exhibitions with one historical exhibitor/list edition found: 6
+- Upcoming B2B exhibitions with two historical exhibitor/list editions found: 1
 - Upcoming B2B exhibitions with three historical exhibitor/list editions found: 0
 - `database/exhibitions.csv` rows: 32
-- `database/exhibition-sources.csv` rows: 71
+- `database/exhibition-sources.csv` rows: 69
 - `database/evidence.csv` rows: 230
 
 ## Upcoming qualifying B2B exhibitions
@@ -37,7 +37,7 @@ The operational upcoming-exhibition registry now covers exhibitions occurring fr
 | Hotel & Hospitality Expo Saudi Arabia 2026 | 2026-09-15–2026-09-17 | upcoming_confirmed | A | hospitality | yes | 1 | verified_cross_source | medium |
 | Lighting Design & Technology Expo 2026 | 2026-09-06–2026-09-08 | upcoming_discovery | B | lighting_design_technology | no | 1 | discovery_only | low |
 | ORGATEC WORKSPACE Saudi Arabia 2026 | 2026-09-13–2026-09-15 | upcoming_discovery | B | workspace_interiors | no | 0 | conflict_needs_review | medium |
-| Saudi Agriculture 2026 | 2026-10-19–2026-10-22 | upcoming_confirmed | A | agriculture_foodpack_aquaculture | yes | 2 | verified_primary | high |
+| Saudi Agriculture 2026 | 2026-10-19–2026-10-22 | upcoming_confirmed | A | agriculture_foodpack_aquaculture | yes | 1 | verified_primary | high |
 | Saudi Food Expo 2026 | 2026-11-15–2026-11-18 | upcoming_discovery | B | food_hospitality | no | 0 | discovery_only | low |
 | Saudi Elenex 2026 | 2026-11-02–2026-11-05 | upcoming_confirmed | A | energy_electricity_hvac | no | 0 | verified_primary | high |
 | LIFT CITY EXPO Riyadh 2026 | 2026-11-26–2026-11-28 | upcoming_confirmed | B | elevators_vertical_transport | no | 0 | discovery_only | medium |
@@ -76,6 +76,12 @@ The operational upcoming-exhibition registry now covers exhibitions occurring fr
 | Riyadh Season consumer activations | Entertainment/festival activations, not stable B2B trade exhibitions. |
 | General conference-only HR or education summits | Excluded unless a meaningful exhibitor floor and dates are evidenced. |
 | Webinar/lecture/networking-only listings | No qualifying exhibition floor. |
+
+## Final duplicate-source correction
+- Removed the duplicate Saudi Agriculture 2026 current source row for `https://saudi-agriculture.com/exhibitors-list/`; one current 2026 source row is retained.
+- Kept a single Lighting Design & Technology historical 2023 source row and renamed the erroneous `2026-official` source id to `riyadh-2026-lighting-design-technology-2023-hist`.
+- The Saudi Agriculture reused exhibitors-list URL was not captured with explicit 2025 dating, so the 2025 historical row is now `exhibitor_list_available=not_found` and is excluded from 2025 historical coverage counts.
+- Added `tests/validate_registry.py` coverage to reject duplicate source composites: `exhibition_id + edition_year + source_url + current_or_historical`.
 
 ## Source coverage and corrections
 - General events-directory homepages were removed from source-map rows where specific event URLs or explicit `not_found` investigation rows were more appropriate.
