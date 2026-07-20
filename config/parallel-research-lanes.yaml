@@ -1,0 +1,111 @@
+schema_version: 1
+mode: multi_agent_parallel_public_source_research
+active_since: 2026-07-20
+
+coordination_rules:
+  github_main_source_of_truth: true
+  fetch_origin_before_each_run: true
+  inspect_open_prs_before_assigning_work: true
+  no_merge_without_salah: true
+  no_external_outreach: true
+  no_crm_import: true
+  preserve_public_source_evidence: true
+  do_not_guess_contacts: true
+  do_not_merge_by_similar_name_only: true
+
+daily_batch_model:
+  target_mix: "Run several exhibitions in parallel instead of completing one exhibition before starting the next."
+  company_enrichment_batch_per_lane: "15-25 companies when company records already exist."
+  source_discovery_batch_per_lane: "One current or historical exhibitor directory/source set per agent."
+  current_directory_rule: "Extract confirmed-current exhibitors when a stable current-edition list is visible."
+  historical_rule: "If no current directory is visible, start the last two completed editions immediately and target a third when public data is reliable."
+
+active_lanes:
+  - lane_id: current-directory-fast-track
+    exhibition_id: multiple
+    status: ready_for_parallel_agents
+    current_focus: "Extract newly verified official current exhibitor directories in separate, non-overlapping agent lanes."
+    initial_targets:
+      - riyadh-2026-big5-construct-saudi
+      - riyadh-2026-saudi-build
+      - riyadh-2026-saudi-elenex
+      - riyadh-2026-leap
+    hold_for_current_year_verification:
+      - riyadh-2026-saudi-food-expo
+    source_priority:
+      - official_current_exhibitor_directory
+      - organizer_profile_page
+      - raw_source_snapshot
+      - normalized_exhibitor_records
+      - field_level_evidence
+
+  - lane_id: saudi-agriculture-enrichment
+    exhibition_id: riyadh-2026-saudi-agriculture
+    status: active_pr_in_progress
+    current_focus: "Continue staged public-source enrichment while the current extraction PR remains in draft review."
+    next_batch: "exh-saag-2026-0026 through exh-saag-2026-0050"
+    dependency: "Draft PR #5 contains the current 222-record extraction dataset."
+    source_priority:
+      - official_company_website
+      - contact_about_pages
+      - linkedin
+      - government_or_chamber
+      - google_business_maps
+      - saudi_company_directory
+      - distributor_partner_website
+
+  - lane_id: leap-current-extraction
+    exhibition_id: riyadh-2026-leap
+    status: ready_for_parallel_agent
+    current_focus: "Extract the official 2026 exhibitor directory into a raw snapshot, normalized exhibitor records, evidence, and report."
+    source_priority:
+      - official_current_exhibitor_directory
+      - official_historical_exhibitor_directory
+      - organizer_catalogue_floorplan_app
+      - company_website
+      - linkedin
+
+  - lane_id: saudi-event-show-current-extraction
+    exhibition_id: riyadh-2026-saudi-event-show
+    status: ready_for_parallel_agent
+    current_focus: "Extract third-party current exhibitor leads and keep them clearly labelled as third_party_directory/discovery or cross-source until confirmed."
+    source_priority:
+      - official_organizer_pages
+      - public_business_directory
+      - linkedin
+      - company_website
+      - social_public_pages
+
+  - lane_id: hotel-hospitality-current-extraction
+    exhibition_id: riyadh-2026-hotel-hospitality-expo
+    status: ready_for_parallel_agent
+    current_focus: "Extract third-party current exhibitor leads and cross-check against official event context where possible."
+    source_priority:
+      - official_organizer_pages
+      - public_business_directory
+      - company_website
+      - linkedin
+      - distributor_partner_website
+
+  - lane_id: historical-candidate-collection
+    exhibition_id: multiple
+    status: active_parallel_backlog
+    current_focus: "Start last-two-edition historical candidate collection for targets without stable 2026 exhibitor directories."
+    initial_targets:
+      - riyadh-2026-cityscape-global
+      - riyadh-2026-global-health
+      - riyadh-2026-saudi-build
+      - riyadh-2026-index-saudi
+      - riyadh-2026-money2020-middle-east
+      - riyadh-2026-lighting-design-technology
+      - riyadh-2026-bio-middle-east
+
+quality_gate:
+  required_before_publish:
+    - run_validate_registry
+    - run_validate_exhibitors_when_exhibitor_data_changes
+    - run_git_diff_check
+    - check_duplicate_ids
+    - check_orphan_evidence
+    - reconcile_report_counts
+    - verify_branch_pr_and_head_sha_on_github

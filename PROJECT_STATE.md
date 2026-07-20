@@ -1,10 +1,17 @@
 # Project State
 
-Last updated: 2026-07-18
-Status: Comprehensive public-source coverage approved and operational
+Last updated: 2026-07-20
+Status: Parallel multi-exhibition public-source research mode active
 
 ## Current objective
-Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibitors plus the last two or three completed editions, with comprehensive collection across all relevant public sources.
+Run the Riyadh exhibition intelligence pipeline across multiple exhibitions in parallel, using current confirmed exhibitors plus the last two or three completed editions, with comprehensive collection across all relevant public sources.
+
+## Operational mode
+- Use several bounded research lanes at the same time; do not wait to finish one exhibition before starting source discovery or extraction for the next.
+- Keep each agent on a non-overlapping lane: one current directory extraction, one historical-source lane, or one company-enrichment slice.
+- Centralize final normalization, evidence IDs, duplicate checks, report counts, branch pushes, and PR updates in the coordinator workflow.
+- Use `config/parallel-research-lanes.yaml` as the active lane map for daily work allocation.
+- Keep Saudi Agriculture PR #5 as the active extraction/enrichment PR until reviewed or merged; launch LEAP, Saudi Event Show, Hotel & Hospitality, and historical-candidate lanes in parallel without external outreach.
 
 ## Priority queue
 - [x] P0 — Establish the CIP operating model, canonical schemas, source policy, and quality rules.
@@ -14,7 +21,7 @@ Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibi
 - [ ] P0 — Start historical candidate collection immediately where 2026 directories are unavailable.
 - [ ] P1 — Import/normalize the existing Riyadh exhibitions workbook into canonical CSV datasets.
 - [ ] P1 — Build confirmed-current and historical-candidate records without mixing statuses.
-- [ ] P1 — Enrich public business contacts from the full source universe in batches of about 15 companies per target per run.
+- [ ] P1 — Enrich public business contacts from the full source universe in parallel lanes of about 15-25 companies per target per run.
 - [ ] P2 — Implement deduplication, source-relationship labelling, evidence coverage, and quality validation scripts.
 - [ ] P2 — Produce opportunity rankings for Core Media.
 - [ ] P3 — Add recurring monitoring only after the initial normal Codex task and schemas are stable.
@@ -24,6 +31,16 @@ Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibi
 LEAP, Cityscape Global, BAPEX, HR-focused exhibitions, and every other qualifying Riyadh exhibition through 31 December 2026. Names, dates, and eligibility must be verified before being treated as canonical.
 
 ## Daily log
+### 2026-07-20 - Parallel multi-exhibition research mode launched
+- Switched daily operation from single-exhibition sequencing to parallel multi-agent lanes across all qualifying Riyadh exhibitions.
+- Added `config/parallel-research-lanes.yaml` to define active lanes, daily batch size, source priorities, coordination rules, and quality gates.
+- Started read-only parallel agent scouting for LEAP 2026, The Saudi Event Show 2026, Hotel & Hospitality Expo Saudi Arabia 2026, Saudi Agriculture enrichment continuation, and the remaining calendar/historical-candidate backlog.
+- Registered newly verified official current-directory lanes for Big 5 Construct Saudi 2026, Saudi Build 2026, and Saudi Elenex 2026.
+- Corrected Saudi Event Show and Hotel & Hospitality 10Times pages from current-directory assumptions to historical/discovery-only because both pages state current-edition exhibitors are unavailable.
+- Added 8 field-level evidence rows for the source-status corrections, newly located current-directory URLs, and Big 5 venue correction, bringing `database/evidence.csv` to 618 rows.
+- Current GitHub state before this coordination update: Draft PR #5 is open, based on `main` commit `01136d944d408f522eb1887170a8f9b7a4a46f9a`, with Saudi Agriculture extraction plus enrichment batch 1 at head `0d7bad11215fae1a475463c8ffa252b5396472fe`.
+- Coordination decision: continue publishing through Draft PRs, do not merge, do not contact companies, do not import to CRM, and keep every material fact source-backed with source relationship, page status, verification status, confidence, URL, and access date.
+
 ### 2026-07-20 - Saudi Agriculture 2026 enrichment batch 1
 - Enriched the first 25 Saudi Agriculture 2026 exhibitor records using public sources only.
 - Added official/company-site, LinkedIn/public company page, partner-directory, business-directory, and registry-preview evidence where stable sources were found.
