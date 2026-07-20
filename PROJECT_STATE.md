@@ -24,6 +24,13 @@ Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibi
 LEAP, Cityscape Global, BAPEX, HR-focused exhibitions, and every other qualifying Riyadh exhibition through 31 December 2026. Names, dates, and eligibility must be verified before being treated as canonical.
 
 ## Daily log
+### 2026-07-20 - Saudi Agriculture 2026 enrichment batch 1
+- Enriched the first 25 Saudi Agriculture 2026 exhibitor records using public sources only.
+- Added official/company-site, LinkedIn/public company page, partner-directory, business-directory, and registry-preview evidence where stable sources were found.
+- Captured public business contacts only when explicitly published; no guessed emails, phone numbers, WhatsApp numbers, or named contacts were added.
+- Added 158 enrichment evidence rows, bringing `database/evidence.csv` from 452 to 610 rows while preserving all prior evidence.
+- Key gaps remain: several early records still have no stable public website/contact source, LinkedIn coverage is partial, Google Business/Maps coverage was not captured in this batch, and no company has a verified named sales/marketing contact yet.
+
 ### 2026-07-18 — Saudi Agriculture 2026 exhibitor extraction batch 1
 - Extracted all 222 visible raw exhibitor rows from the official Saudi Agriculture 2026 exhibitors-list table.
 - Normalized 222 unique current exhibitor company records into `database/exhibitors.csv` without fuzzy/name-only merges.

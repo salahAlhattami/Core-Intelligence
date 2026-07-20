@@ -20,7 +20,7 @@ URL_FIELDS = [
 
 
 def read_csv(path):
-    with path.open(newline="") as handle:
+    with path.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
 
 
@@ -42,7 +42,7 @@ def main():
     raw = read_csv(RAW)
     print(f"CSV parsing PASS exhibitors={len(exhibitors)} raw={len(raw)} evidence={len(evidence)}")
 
-    report_text = REPORT.read_text()
+    report_text = REPORT.read_text(encoding="utf-8")
     require(f"Raw exhibitor names extracted: {len(raw)}" in report_text, "Report raw count mismatch")
     require(f"Unique companies after dedupe: {len(exhibitors)}" in report_text, "Report unique count mismatch")
     print("Report count matching PASS")
@@ -64,6 +64,26 @@ def main():
         for field in URL_FIELDS:
             require(valid_url(row.get(field, "")), f"Invalid URL in {field}: {row['record_id']} {row.get(field)}")
     print("URL format validation PASS")
+
+    contact_fields = [
+        "general_email", "sales_email", "marketing_email", "other_public_email",
+        "public_phone", "public_whatsapp", "public_contact_name", "public_contact_profile",
+    ]
+    contact_source_errors = [
+        row["record_id"]
+        for row in exhibitors
+        if any(row.get(field, "").strip() for field in contact_fields)
+        and not row.get("contact_source_url", "").strip()
+    ]
+    require(not contact_source_errors, f"Contact data without contact_source_url: {contact_source_errors[:10]}")
+    contact_date_errors = [
+        row["record_id"]
+        for row in exhibitors
+        if any(row.get(field, "").strip() for field in contact_fields)
+        and not row.get("last_verified_at", "").strip()
+    ]
+    require(not contact_date_errors, f"Contact data without last_verified_at: {contact_date_errors[:10]}")
+    print("Contact source/date validation PASS")
 
     # Dedupe policy: no merge may rely on normalized name only. Either domain-backed or raw-name/country exact key.
     domain_keys = [row["official_domain"] for row in exhibitors if row["official_domain"]]
