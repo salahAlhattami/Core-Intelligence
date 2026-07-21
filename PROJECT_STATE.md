@@ -31,6 +31,15 @@ Run the Riyadh exhibition intelligence pipeline across multiple exhibitions in p
 LEAP, Cityscape Global, BAPEX, HR-focused exhibitions, and every other qualifying Riyadh exhibition through 31 December 2026. Names, dates, and eligibility must be verified before being treated as canonical.
 
 ## Daily log
+### 2026-07-21 - Parallel current extraction continuation batch 4
+- Continued the all-exhibitions workflow with BIO Middle East, LEAP, Big 5 Construct Saudi, Saudi Agriculture enrichment, and broad source discovery running in parallel.
+- Added 224 additional current public-source company records: 126 BIO Middle East 2026, 50 LEAP 2026 rows, and 48 Big 5 Construct Saudi 2026 rows.
+- Continued Saudi Agriculture enrichment for 26 records in the `exh-saag-2026-0075` through `exh-saag-2026-0100` range using public company, government/chamber, association, partner, social, and directory sources.
+- Registered new source lanes for Saudi Warehousing & Logistics 2026 official exhibitor directory, HRSE KSA 2026 current sponsors/exhibitors, CPHI exhibitor essentials, Cityscape 2025 official event-app directory, Global Health 2026 app landing, and Black Hat MEA 2025 official historical directory.
+- Upgraded HRSE KSA from a date-unconfirmed HR/recruitment candidate to an upcoming confirmed current target based on official 2026 HRSE pages.
+- `database/exhibitors.csv` now contains 779 records, `database/evidence.csv` contains 1648 rows, and `database/exhibition-sources.csv` contains 93 source rows in the local branch before publication verification.
+- No outreach, CRM import, automatic messaging, guessed contacts, or name-only merges were performed.
+
 ### 2026-07-21 - Parallel current extraction continuation batch 3
 - Continued the approved all-exhibitions workflow rather than focusing on a single exhibition.
 - Added 98 additional current public-source company records: 50 LEAP 2026 rows and 48 Big 5 Construct Saudi 2026 rows.

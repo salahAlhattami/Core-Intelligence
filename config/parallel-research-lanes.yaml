@@ -32,6 +32,7 @@ active_lanes:
       - riyadh-2026-leap
       - riyadh-2026-bio-middle-east
       - riyadh-2026-cphi-middle-east
+      - riyadh-2026-saudi-warehousing-logistics
     hold_for_current_year_verification:
       - riyadh-2026-saudi-food-expo
     source_priority:
@@ -45,7 +46,7 @@ active_lanes:
     exhibition_id: riyadh-2026-saudi-agriculture
     status: active_pr_in_progress
     current_focus: "Continue staged public-source enrichment while the current extraction PR remains in draft review."
-    next_batch: "exh-saag-2026-0075 through exh-saag-2026-0100"
+    next_batch: "exh-saag-2026-0101 through exh-saag-2026-0125"
     dependency: "Draft PR #5 contains the current 222-record extraction dataset."
     source_priority:
       - official_company_website
@@ -59,7 +60,7 @@ active_lanes:
   - lane_id: leap-current-extraction
     exhibition_id: riyadh-2026-leap
     status: ready_for_parallel_agent
-    current_focus: "Continue the official 2026 exhibitor directory after row 125 into the raw snapshot, normalized exhibitor records, evidence, and report."
+    current_focus: "Continue the official 2026 exhibitor directory after row 175 into the raw snapshot, normalized exhibitor records, evidence, and report."
     source_priority:
       - official_current_exhibitor_directory
       - official_historical_exhibitor_directory
@@ -81,7 +82,18 @@ active_lanes:
   - lane_id: big5-current-extraction
     exhibition_id: riyadh-2026-big5-construct-saudi
     status: ready_for_parallel_agent
-    current_focus: "Continue the public official directory after row 96, preserving stand, hall, country, profile URL, and source evidence."
+    current_focus: "Continue the public official directory after row 144, preserving stand, hall, country, profile URL, and source evidence."
+    source_priority:
+      - official_current_exhibitor_directory
+      - organizer_profile_page
+      - company_website
+      - linkedin
+      - public_business_directory
+
+  - lane_id: saudi-warehousing-current-extraction
+    exhibition_id: riyadh-2026-saudi-warehousing-logistics
+    status: ready_for_parallel_agent
+    current_focus: "Start the official public exhibitor directory now that the current list endpoint is known; preserve stands, countries, profile URLs, and source evidence."
     source_priority:
       - official_current_exhibitor_directory
       - organizer_profile_page

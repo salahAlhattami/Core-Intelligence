@@ -14,6 +14,7 @@ REPORTS = [
     ROOT / "reports" / "2026-07-21-parallel-current-extraction-batch-1.md",
     ROOT / "reports" / "2026-07-21-parallel-current-extraction-batch-2.md",
     ROOT / "reports" / "2026-07-21-parallel-current-extraction-batch-3.md",
+    ROOT / "reports" / "2026-07-21-parallel-current-extraction-batch-4.md",
 ]
 RAW_SNAPSHOTS = {
     "riyadh-2026-saudi-agriculture": ROOT / "database" / "raw" / "saudi-agriculture-2026-exhibitors-2026-07-18.csv",
@@ -23,6 +24,7 @@ RAW_SNAPSHOTS = {
     "riyadh-2026-saudi-elenex": ROOT / "database" / "raw" / "saudi-elenex-2026-exhibitors-2026-07-21.csv",
     "riyadh-2026-saudi-event-show": ROOT / "database" / "raw" / "saudi-event-show-2026-current-sponsors-partners-2026-07-21.csv",
     "riyadh-2026-hotel-hospitality-expo": ROOT / "database" / "raw" / "hotel-hospitality-expo-saudi-2026-current-public-candidates-2026-07-21.csv",
+    "riyadh-2026-bio-middle-east": ROOT / "database" / "raw" / "bio-middle-east-2026-exhibitors-2026-07-21.csv",
 }
 URL_FIELDS = [
     "best_known_website", "linkedin_company", "instagram", "facebook", "x_profile",
@@ -132,7 +134,13 @@ def main():
         ]
         reviewed = all("duplicate_same_name_reviewed" in row.get("notes", "") for row in matching)
         distinct_booths = len({row.get("booth_or_sponsor_notes", "") for row in matching}) == len(matching)
-        if not (reviewed and distinct_booths):
+        profile_urls = set()
+        for row in matching:
+            profile_match = re.search(r"Official .*? profile URL: (\S+)", row.get("notes", ""))
+            if profile_match:
+                profile_urls.add(profile_match.group(1))
+        distinct_profiles = len(profile_urls) == len(matching)
+        if not (reviewed and (distinct_booths or distinct_profiles)):
             duplicate_name_country.append(value)
     require(not duplicate_name_country, f"Name/country duplicate requires review: {duplicate_name_country[:10]}")
     print("No name-only merge validation PASS")
