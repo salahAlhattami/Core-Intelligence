@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Saudi Agriculture 2026 exhibitor extraction outputs."""
+"""Validate current exhibitor extraction outputs."""
 import csv
 import re
 from collections import Counter
@@ -9,9 +9,17 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 EXHIBITORS = ROOT / "database" / "exhibitors.csv"
 EVIDENCE = ROOT / "database" / "evidence.csv"
-RAW = ROOT / "database" / "raw" / "saudi-agriculture-2026-exhibitors-2026-07-18.csv"
-REPORT = ROOT / "reports" / "2026-07-18-saudi-agriculture-2026-exhibitor-batch.md"
-VALID_EXHIBITION_ID = "riyadh-2026-saudi-agriculture"
+REPORTS = [
+    ROOT / "reports" / "2026-07-18-saudi-agriculture-2026-exhibitor-batch.md",
+    ROOT / "reports" / "2026-07-21-parallel-current-extraction-batch-1.md",
+]
+RAW_SNAPSHOTS = {
+    "riyadh-2026-saudi-agriculture": ROOT / "database" / "raw" / "saudi-agriculture-2026-exhibitors-2026-07-18.csv",
+    "riyadh-2026-leap": ROOT / "database" / "raw" / "leap-2026-exhibitors-2026-07-21.csv",
+    "riyadh-2026-big5-construct-saudi": ROOT / "database" / "raw" / "big5-construct-saudi-2026-exhibitors-2026-07-21.csv",
+    "riyadh-2026-saudi-build": ROOT / "database" / "raw" / "saudi-build-2026-exhibitors-2026-07-21.csv",
+    "riyadh-2026-saudi-elenex": ROOT / "database" / "raw" / "saudi-elenex-2026-exhibitors-2026-07-21.csv",
+}
 URL_FIELDS = [
     "best_known_website", "linkedin_company", "instagram", "facebook", "x_profile",
     "youtube", "other_public_profile", "google_business", "public_contact_profile",
@@ -39,12 +47,14 @@ def valid_url(value):
 def main():
     exhibitors = read_csv(EXHIBITORS)
     evidence = read_csv(EVIDENCE)
-    raw = read_csv(RAW)
-    print(f"CSV parsing PASS exhibitors={len(exhibitors)} raw={len(raw)} evidence={len(evidence)}")
+    raw_by_exhibition = {exhibition_id: read_csv(path) for exhibition_id, path in RAW_SNAPSHOTS.items()}
+    raw_total = sum(len(rows) for rows in raw_by_exhibition.values())
+    print(f"CSV parsing PASS exhibitors={len(exhibitors)} raw_total={raw_total} evidence={len(evidence)}")
 
-    report_text = REPORT.read_text(encoding="utf-8")
-    require(f"Raw exhibitor names extracted: {len(raw)}" in report_text, "Report raw count mismatch")
-    require(f"Unique companies after dedupe: {len(exhibitors)}" in report_text, "Report unique count mismatch")
+    report_text = "\n".join(path.read_text(encoding="utf-8") for path in REPORTS if path.exists())
+    require("Raw exhibitor names extracted: 222" in report_text, "Saudi Agriculture report raw count mismatch")
+    require("Unique companies after dedupe: 222" in report_text, "Saudi Agriculture report unique count mismatch")
+    require(f"Parallel current batch exhibitors added: {raw_total - 222}" in report_text, "Parallel batch report count mismatch")
     print("Report count matching PASS")
 
     ids = [row["record_id"] for row in exhibitors]
@@ -52,7 +62,9 @@ def main():
     require(not duplicate_ids, f"Duplicate exhibitor IDs: {duplicate_ids[:10]}")
     print("Duplicate exhibitor IDs PASS")
 
-    require(all(row["exhibition_id"] == VALID_EXHIBITION_ID for row in exhibitors), "Invalid exhibition_id in exhibitors.csv")
+    valid_exhibition_ids = set(RAW_SNAPSHOTS)
+    bad_exhibitions = [row["record_id"] for row in exhibitors if row["exhibition_id"] not in valid_exhibition_ids]
+    require(not bad_exhibitions, f"Invalid exhibition_id in exhibitors.csv: {bad_exhibitions[:10]}")
     print("Exhibition ID validation PASS")
 
     evidence_ids = {row["entity_id"] for row in evidence if row["entity_type"] == "exhibitor"}
@@ -97,7 +109,14 @@ def main():
     require(not duplicate_name_country, f"Name/country duplicate requires review: {duplicate_name_country[:10]}")
     print("No name-only merge validation PASS")
 
-    require(len(raw) == len(exhibitors), "Unexpected dedupe delta; review raw vs unique counts")
+    exhibitor_counts = Counter(row["exhibition_id"] for row in exhibitors)
+    raw_counts = {exhibition_id: len(rows) for exhibition_id, rows in raw_by_exhibition.items()}
+    count_mismatches = [
+        (exhibition_id, raw_counts[exhibition_id], exhibitor_counts[exhibition_id])
+        for exhibition_id in raw_counts
+        if raw_counts[exhibition_id] != exhibitor_counts[exhibition_id]
+    ]
+    require(not count_mismatches, f"Raw-to-exhibitor count mismatch: {count_mismatches}")
     print("Raw-to-unique count validation PASS")
 
 

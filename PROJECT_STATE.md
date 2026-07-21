@@ -1,6 +1,6 @@
 # Project State
 
-Last updated: 2026-07-20
+Last updated: 2026-07-21
 Status: Parallel multi-exhibition public-source research mode active
 
 ## Current objective
@@ -31,6 +31,15 @@ Run the Riyadh exhibition intelligence pipeline across multiple exhibitions in p
 LEAP, Cityscape Global, BAPEX, HR-focused exhibitions, and every other qualifying Riyadh exhibition through 31 December 2026. Names, dates, and eligibility must be verified before being treated as canonical.
 
 ## Daily log
+### 2026-07-21 - Parallel current extraction batch 1
+- Ran the approved multi-exhibition workflow across LEAP 2026, Big 5 Construct Saudi 2026, Saudi Build 2026, Saudi Elenex 2026, and Saudi Agriculture enrichment.
+- Added 100 current confirmed exhibitor records from official 2026 sources: 25 LEAP, 24 Big 5 Construct Saudi, 25 Saudi Build, and 26 Saudi Elenex.
+- Added raw snapshots for the four new current-extraction lanes.
+- Continued Saudi Agriculture enrichment for 10 higher-yield records within `exh-saag-2026-0026` through `exh-saag-2026-0050`.
+- Added 167 evidence rows for the 2026-07-21 extraction/enrichment work, bringing `database/evidence.csv` to 785 rows and `database/exhibitors.csv` to 322 rows.
+- Saudi Build agent did not complete before shutdown; the batch was extracted locally from the official Saudi Build page.
+- No outreach, CRM import, automatic messaging, guessed contacts, or name-only merges were performed.
+
 ### 2026-07-20 - Parallel multi-exhibition research mode launched
 - Switched daily operation from single-exhibition sequencing to parallel multi-agent lanes across all qualifying Riyadh exhibitions.
 - Added `config/parallel-research-lanes.yaml` to define active lanes, daily batch size, source priorities, coordination rules, and quality gates.
