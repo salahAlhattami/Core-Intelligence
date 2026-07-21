@@ -13,6 +13,7 @@ REPORTS = [
     ROOT / "reports" / "2026-07-18-saudi-agriculture-2026-exhibitor-batch.md",
     ROOT / "reports" / "2026-07-21-parallel-current-extraction-batch-1.md",
     ROOT / "reports" / "2026-07-21-parallel-current-extraction-batch-2.md",
+    ROOT / "reports" / "2026-07-21-parallel-current-extraction-batch-3.md",
 ]
 RAW_SNAPSHOTS = {
     "riyadh-2026-saudi-agriculture": ROOT / "database" / "raw" / "saudi-agriculture-2026-exhibitors-2026-07-18.csv",

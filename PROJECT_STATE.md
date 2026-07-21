@@ -31,6 +31,16 @@ Run the Riyadh exhibition intelligence pipeline across multiple exhibitions in p
 LEAP, Cityscape Global, BAPEX, HR-focused exhibitions, and every other qualifying Riyadh exhibition through 31 December 2026. Names, dates, and eligibility must be verified before being treated as canonical.
 
 ## Daily log
+### 2026-07-21 - Parallel current extraction continuation batch 3
+- Continued the approved all-exhibitions workflow rather than focusing on a single exhibition.
+- Added 98 additional current public-source company records: 50 LEAP 2026 rows and 48 Big 5 Construct Saudi 2026 rows.
+- Continued Saudi Agriculture enrichment for 15 records in the `exh-saag-2026-0051` through `exh-saag-2026-0074` range using public company/contact sources only.
+- Added public-source enrichment for selected Saudi Event Show 2026 and Hotel & Hospitality Expo Saudi Arabia 2026 sponsor, partner, logo-strip, and company-public participants while preserving their source relationships.
+- Registered additional broad source-scan findings for BIO Middle East, CPHI Middle East, Cityscape Global, Global Health, INDEX Saudi, Money20/20 Middle East, Saudi Warehousing & Logistics Expo, LIGHTSPACE Saudi Arabia, Saudi Food Expo, FABEX Saudi Arabia, HRSE KSA, Black Hat MEA, Industrial Transformation Saudi Arabia, and related candidates.
+- Corrected BIO Middle East 2026 and CPHI Middle East 2026 from completed/historical May status to upcoming confirmed 14-16 Dec 2026 current targets based on current official pages.
+- `database/exhibitors.csv` now contains 555 records, `database/evidence.csv` contains 1254 rows, and `database/exhibition-sources.csv` contains 86 source rows in the local branch before publication verification.
+- No outreach, CRM import, automatic messaging, guessed contacts, or name-only merges were performed.
+
 ### 2026-07-21 - Parallel current extraction continuation batch 2
 - Continued the approved multi-exhibition workflow across LEAP 2026, Big 5 Construct Saudi 2026, Saudi Build 2026, Saudi Event Show 2026, Hotel & Hospitality Expo Saudi Arabia 2026, and Saudi Agriculture enrichment.
 - Added 135 additional current public-source company/participant records: 50 LEAP, 24 Big 5, 23 Saudi Build, 21 Saudi Event Show sponsor/partner participants, and 17 Hotel & Hospitality public-source participants/candidates.
