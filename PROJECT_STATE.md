@@ -31,6 +31,15 @@ Run the Riyadh exhibition intelligence pipeline across multiple exhibitions in p
 LEAP, Cityscape Global, BAPEX, HR-focused exhibitions, and every other qualifying Riyadh exhibition through 31 December 2026. Names, dates, and eligibility must be verified before being treated as canonical.
 
 ## Daily log
+### 2026-07-21 - Parallel current extraction continuation batch 2
+- Continued the approved multi-exhibition workflow across LEAP 2026, Big 5 Construct Saudi 2026, Saudi Build 2026, Saudi Event Show 2026, Hotel & Hospitality Expo Saudi Arabia 2026, and Saudi Agriculture enrichment.
+- Added 135 additional current public-source company/participant records: 50 LEAP, 24 Big 5, 23 Saudi Build, 21 Saudi Event Show sponsor/partner participants, and 17 Hotel & Hospitality public-source participants/candidates.
+- Expanded raw snapshots to include Saudi Event Show current sponsor/partner participants and Hotel & Hospitality current public-source candidates.
+- Continued Saudi Agriculture enrichment for 9 additional records in the `exh-saag-2026-0038` through `exh-saag-2026-0050` range using official, affiliate, LinkedIn, company, and registry-mirror public sources.
+- `database/exhibitors.csv` now contains 457 records and `database/evidence.csv` contains 1023 rows in the local branch before publication verification.
+- Saudi Event Show and Hotel & Hospitality rows preserve sponsor, partner, logo-strip, public-social, company-calendar, media-partner, and advisory relationships explicitly; booth exhibitor status is not inferred from those rows.
+- No outreach, CRM import, automatic messaging, guessed contacts, or name-only merges were performed.
+
 ### 2026-07-21 - Parallel current extraction batch 1
 - Ran the approved multi-exhibition workflow across LEAP 2026, Big 5 Construct Saudi 2026, Saudi Build 2026, Saudi Elenex 2026, and Saudi Agriculture enrichment.
 - Added 100 current confirmed exhibitor records from official 2026 sources: 25 LEAP, 24 Big 5 Construct Saudi, 25 Saudi Build, and 26 Saudi Elenex.

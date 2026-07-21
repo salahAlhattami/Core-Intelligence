@@ -12,6 +12,7 @@ EVIDENCE = ROOT / "database" / "evidence.csv"
 REPORTS = [
     ROOT / "reports" / "2026-07-18-saudi-agriculture-2026-exhibitor-batch.md",
     ROOT / "reports" / "2026-07-21-parallel-current-extraction-batch-1.md",
+    ROOT / "reports" / "2026-07-21-parallel-current-extraction-batch-2.md",
 ]
 RAW_SNAPSHOTS = {
     "riyadh-2026-saudi-agriculture": ROOT / "database" / "raw" / "saudi-agriculture-2026-exhibitors-2026-07-18.csv",
@@ -19,6 +20,8 @@ RAW_SNAPSHOTS = {
     "riyadh-2026-big5-construct-saudi": ROOT / "database" / "raw" / "big5-construct-saudi-2026-exhibitors-2026-07-21.csv",
     "riyadh-2026-saudi-build": ROOT / "database" / "raw" / "saudi-build-2026-exhibitors-2026-07-21.csv",
     "riyadh-2026-saudi-elenex": ROOT / "database" / "raw" / "saudi-elenex-2026-exhibitors-2026-07-21.csv",
+    "riyadh-2026-saudi-event-show": ROOT / "database" / "raw" / "saudi-event-show-2026-current-sponsors-partners-2026-07-21.csv",
+    "riyadh-2026-hotel-hospitality-expo": ROOT / "database" / "raw" / "hotel-hospitality-expo-saudi-2026-current-public-candidates-2026-07-21.csv",
 }
 URL_FIELDS = [
     "best_known_website", "linkedin_company", "instagram", "facebook", "x_profile",
@@ -55,6 +58,7 @@ def main():
     require("Raw exhibitor names extracted: 222" in report_text, "Saudi Agriculture report raw count mismatch")
     require("Unique companies after dedupe: 222" in report_text, "Saudi Agriculture report unique count mismatch")
     require(f"Parallel current batch exhibitors added: {raw_total - 222}" in report_text, "Parallel batch report count mismatch")
+    require(f"Total current company records after this run: {len(exhibitors)}" in report_text, "Current company total report mismatch")
     print("Report count matching PASS")
 
     ids = [row["record_id"] for row in exhibitors]
@@ -97,15 +101,38 @@ def main():
     require(not contact_date_errors, f"Contact data without last_verified_at: {contact_date_errors[:10]}")
     print("Contact source/date validation PASS")
 
-    # Dedupe policy: no merge may rely on normalized name only. Either domain-backed or raw-name/country exact key.
-    domain_keys = [row["official_domain"] for row in exhibitors if row["official_domain"]]
+    # Dedupe policy: no merge may rely on normalized name only. Cross-exhibition repeat
+    # appearances are valid, so duplicate checks are scoped to a single exhibition.
+    domain_keys = [
+        (row["exhibition_id"], row["official_domain"])
+        for row in exhibitors if row["official_domain"]
+    ]
     duplicate_domains = [value for value, count in Counter(domain_keys).items() if count > 1]
     require(not duplicate_domains, f"Duplicate domains require manual review: {duplicate_domains[:10]}")
     name_country_keys = [
-        (re.sub(r"\W+", " ", row["company_name_raw"].lower()).strip(), row["country"].lower())
+        (
+            row["exhibition_id"],
+            re.sub(r"\W+", " ", row["company_name_raw"].lower()).strip(),
+            row["country"].lower(),
+        )
         for row in exhibitors if not row["official_domain"]
     ]
-    duplicate_name_country = [value for value, count in Counter(name_country_keys).items() if count > 1]
+    duplicate_name_country = []
+    for value, count in Counter(name_country_keys).items():
+        if count <= 1:
+            continue
+        matching = [
+            row for row in exhibitors
+            if (
+                row["exhibition_id"],
+                re.sub(r"\W+", " ", row["company_name_raw"].lower()).strip(),
+                row["country"].lower(),
+            ) == value
+        ]
+        reviewed = all("duplicate_same_name_reviewed" in row.get("notes", "") for row in matching)
+        distinct_booths = len({row.get("booth_or_sponsor_notes", "") for row in matching}) == len(matching)
+        if not (reviewed and distinct_booths):
+            duplicate_name_country.append(value)
     require(not duplicate_name_country, f"Name/country duplicate requires review: {duplicate_name_country[:10]}")
     print("No name-only merge validation PASS")
 
