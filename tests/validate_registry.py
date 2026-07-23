@@ -40,7 +40,7 @@ CUTOVER = dt.date(2026, 7, 18)
 
 
 def read_csv(name):
-    with FILES[name].open(newline="") as handle:
+    with FILES[name].open(newline="", encoding="utf-8") as handle:
         rows = list(csv.DictReader(handle))
     if not rows:
         raise AssertionError(f"{FILES[name]} has no data rows")
@@ -63,7 +63,7 @@ def main():
         print(f"Required columns PASS {name}")
 
     for name, path in FILES.items():
-        with path.open(newline="") as handle:
+        with path.open(newline="", encoding="utf-8") as handle:
             reader = csv.reader(handle)
             header = next(reader)
             bad_rows = [(idx, len(row)) for idx, row in enumerate(reader, 2) if len(row) != len(header)]
