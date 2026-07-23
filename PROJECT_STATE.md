@@ -1,6 +1,6 @@
 # Project State
 
-Last updated: 2026-07-18
+Last updated: 2026-07-23
 Status: Comprehensive public-source coverage approved and operational
 
 ## Current objective
@@ -24,6 +24,13 @@ Begin the Riyadh exhibition intelligence pipeline using current confirmed exhibi
 LEAP, Cityscape Global, BAPEX, HR-focused exhibitions, and every other qualifying Riyadh exhibition through 31 December 2026. Names, dates, and eligibility must be verified before being treated as canonical.
 
 ## Daily log
+### 2026-07-23 — Non-LEAP current exhibition extraction batch
+- Skipped LEAP intentionally and added zero `riyadh-2026-leap` company records.
+- Added 382 non-LEAP current company/participant records across Big 5 Construct Saudi, BIO Middle East, Saudi Build, Saudi Elenex, Saudi Event Show, and Hotel & Hospitality Expo Saudi Arabia.
+- Increased `database/exhibitors.csv` to 604 total records and `database/evidence.csv` to 1157 total evidence rows.
+- Preserved source relationship labels: official current directories remain `verified_primary`, while sponsor/partner/logo-strip rows do not infer booth exhibitor status.
+- Added non-LEAP raw snapshots and expanded validation so raw counts match normalized records with no duplicate IDs or orphan exhibitor evidence.
+
 ### 2026-07-18 — Saudi Agriculture 2026 current exhibitor extraction batch 1
 - Extracted all 222 visible raw exhibitor rows from the official Saudi Agriculture 2026 exhibitors-list table.
 - Normalized 222 unique current exhibitor company records into `database/exhibitors.csv` without fuzzy/name-only merges.
