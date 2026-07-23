@@ -1,4 +1,4 @@
-# Saudi Agriculture 2026 Exhibitor Extraction Batch
+# Saudi Agriculture 2026 Current Exhibitor Extraction Batch
 
 Date: 2026-07-18
 Branch: codex/extract-saudi-agriculture-2026-exhibitors
@@ -6,7 +6,7 @@ Exhibition ID: riyadh-2026-saudi-agriculture
 Source: https://saudi-agriculture.com/exhibitors-list/
 
 ## Scope
-This batch extracts every visible company row from the current Saudi Agriculture 2026 official exhibitors-list table. The extraction preserves raw exhibitor names, stand numbers, sectors, product text, country, listed websites, and official table details before normalization. No guessed emails, phone numbers, personal data, or outreach actions were added.
+This current exhibitor extraction batch extracts every visible company row from the current Saudi Agriculture 2026 official exhibitors-list table. The extraction preserves raw exhibitor names, stand numbers, sectors, product text, country, listed websites, and official table details before normalization. No guessed emails, phone numbers, personal data, or outreach actions were added.
 
 ## Counts
 - Raw exhibitor names extracted: 222
@@ -44,7 +44,7 @@ Deduplication used official domain when listed, otherwise exact normalized raw c
 - `git diff --check`
 
 ## Limitations
-This is the first extraction batch. It captures the full current official exhibitor list, but does not yet perform broad per-company contact enrichment across LinkedIn, social pages, chambers, directories, news, PDF catalogues, distributor pages, or company websites. That should follow in smaller enrichment batches.
+This is a current exhibitor extraction batch, not completed enrichment. It captures the full current official exhibitor list, but does not yet perform broad per-company contact enrichment across LinkedIn, social pages, chambers, directories, news, PDF catalogues, distributor pages, or company websites. That should follow in smaller enrichment batches.
 
 ## Recommended next task
 Enrich the first 25 Saudi Agriculture 2026 exhibitors with company websites, LinkedIn/company social pages, public business emails/phones, public named sales/marketing/business-development contacts, and cross-source verification.
